@@ -1,0 +1,22 @@
+.{
+    .name = .SDL_net_zig,
+    .version = "3.0.0",
+    .dependencies = .{
+        .sdl_net = .{
+            .url = "git+https://github.com/libsdl-org/SDL_net#f9aee39866193cb9d65af3c36cedd89a7a3e0cbe",
+            .hash = "N-V-__8AAGg7egABPvYRt59EEU34gl_z5KL5SApd4BTdPEod",
+        },
+        .sdl = .{
+            .url = "git+https://github.com/castholm/SDL.git#2cde21ea89c7b67d6e16f7f1e2faaa6f44618ecb",
+            .hash = "sdl-0.3.3+3.2.28-7uIn9MiRfwFhqxnwBi_vCQlKr82YpwkQBVwdz2uy46S1",
+        },
+    },
+    .minimum_zig_version = "0.15.2",
+    .paths = .{
+        "LICENSE",
+        "README.md",
+        "build.zig",
+        "build.zig.zon",
+    },
+    .fingerprint = 0x8b298553b8d3044a,
+}
