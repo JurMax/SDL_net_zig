@@ -1,5 +1,5 @@
 .{
-    .name = .SDL_net_zig,
+    .name = .sdl_net_zig,
     .version = "3.0.0",
     .dependencies = .{
         .sdl_net = .{
