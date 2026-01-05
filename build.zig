@@ -24,6 +24,14 @@ pub fn build(b: *std.Build) void {
     lib.root_module.addIncludePath(upstream.path("include"));
     lib.installHeadersDirectory(upstream.path("include/SDL3_net"), "SDL3_net", .{});
 
+    if (lib.linkage.? == .dynamic) {
+        lib.setVersionScript(upstream.path("src/SDL_net.sym"));
+        lib.linker_allow_undefined_version = true;
+        if (target.result.os.tag == .windows) {
+            lib.addWin32ResourceFile(.{ .file = upstream.path("src/version.rc") });
+        }
+    }
+
     const sdl_dep = b.dependency("sdl", .{
         .target = target,
         .optimize = optimize,
