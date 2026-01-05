@@ -44,4 +44,32 @@ pub fn build(b: *std.Build) void {
     }
 
     b.installArtifact(lib);
+
+    // Add run steps for the examples.
+    const examples = .{
+        "voipchat",
+        "simple-http-get",
+        "resolve-hostnames",
+        "get-local-addrs",
+        "echo-server",
+    };
+    inline for (examples) |name| {
+        const example = b.addExecutable(.{
+            .name = name,
+            .root_module = b.createModule(.{
+                .target = target,
+                .optimize = optimize,
+                .link_libc = true,
+            }),
+        });
+        example.root_module.linkLibrary(lib);
+        example.root_module.addIncludePath(upstream.path("include"));
+        example.root_module.addCSourceFiles(.{
+            .root = upstream.path("examples"),
+            .files = &.{name ++ ".c"},
+        });
+        const run_example = b.addRunArtifact(example);
+        const run_step = b.step(name, "Run the " ++ name ++ " example");
+        run_step.dependOn(&run_example.step);
+    }
 }
