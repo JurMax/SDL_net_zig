@@ -3,12 +3,12 @@
     .version = "3.0.0",
     .dependencies = .{
         .sdl_net = .{
-            .url = "git+https://github.com/libsdl-org/SDL_net#ee90d1ecc9c9b33ce9b04d8897ed745348782001",
-            .hash = "N-V-__8AAHrHegDFNwZHCw9ZoBs_j64Q4Ifot8-kCqgtFVN4",
+            .url = "git+https://github.com/libsdl-org/SDL_net#4dd85af45d8597f93796815fba0defa5d499be21",
+            .hash = "N-V-__8AADTKegAfeZseEswVRDzQqiD9BKBM7HI9WYbWUL8O",
         },
         .sdl = .{
-            .url = "git+https://github.com/castholm/SDL.git#2cde21ea89c7b67d6e16f7f1e2faaa6f44618ecb",
-            .hash = "sdl-0.3.3+3.2.28-7uIn9MiRfwFhqxnwBi_vCQlKr82YpwkQBVwdz2uy46S1",
+            .url = "git+https://github.com/castholm/SDL.git#887fa805e40d5c7bb3955ae69b89ed566c6a0471",
+            .hash = "sdl-0.4.0+3.4.0-SDL--rq2owEZsySGuHCuVJ9naEvH3i3e_pyUIjziBtJ-",
         },
     },
     .minimum_zig_version = "0.15.2",
