@@ -3,6 +3,12 @@ const std = @import("std");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+    const build_sdl = b.option(
+        bool,
+        "build_sdl",
+        "Also build and link SDL itself (default: false)",
+    ) orelse false;
+
     const preferred_linkage = b.option(
         std.builtin.LinkMode,
         "preferred_linkage",
@@ -25,7 +31,10 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .preferred_linkage = preferred_linkage,
     });
-    lib.root_module.linkLibrary(sdl_dep.artifact("SDL3"));
+    if (build_sdl) {
+        lib.root_module.linkLibrary(sdl_dep.artifact("SDL3"));
+        lib.installHeadersDirectory(sdl_dep.path("include/SDL3"), "SDL3", .{});
+    } else lib.root_module.addIncludePath(sdl_dep.path("include"));
 
     if (target.result.os.tag == .windows) {
         lib.root_module.linkSystemLibrary("iphlpapi", .{});
@@ -62,6 +71,7 @@ pub fn build(b: *std.Build) void {
                 .link_libc = true,
             }),
         });
+        example.root_module.linkLibrary(sdl_dep.artifact("SDL3"));
         example.root_module.linkLibrary(lib);
         example.root_module.addIncludePath(upstream.path("include"));
         example.root_module.addCSourceFiles(.{
