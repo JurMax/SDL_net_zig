@@ -1,0 +1,37 @@
+name: Automatic update
+
+on:
+  schedule:
+    - cron: "24 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up LLVM and Clang
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lld llvm llvm-dev clang
+
+      - name: Set up Zig
+        uses: mlugg/setup-zig@v2
+
+      - name: Fetch latest commit
+        run: |
+          zig fetch --save=sdl_net git+https://github.com/libsdl-org/SDL_net
+          zig fetch --save git+https://github.com/castholm/SDL.git
+
+      - name: Run `zig build`
+        run: zig build
+
+      - name: Commit update
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'build.zig.zon'
+          message: 'Automatic update'
+
