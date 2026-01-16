@@ -19,6 +19,7 @@ Next, add it to your `build.zig`:
 const sdl_net_dependency = b.dependency("sdl_net_zig", .{
     .target = target,
     .optimize = optimize,
+    .build_sdl = false, // Set to true to also build SDL3 itself.
 });
 exe.linkLibrary(sdl_net_dependency.artifact("sdl_net"));
 ```
