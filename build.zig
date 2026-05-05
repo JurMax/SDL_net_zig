@@ -18,7 +18,7 @@ pub fn build(b: *std.Build) void {
 
     const upstream = b.dependency("sdl_net", .{});
     const lib = b.addLibrary(.{
-        .name = "sdl_net",
+        .name = "SDL3_net",
         .linkage = preferred_linkage,
         .root_module = b.createModule(.{
             .target = target,

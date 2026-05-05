@@ -16,12 +16,12 @@ zig fetch --save git+https://github.com/JurMax/SDL_net_zig
 Next, add it to your `build.zig`:
 
 ```zig
-const sdl_net_dependency = b.dependency("sdl_net_zig", .{
+const sdl_net_dependency = b.dependency("sdl_net", .{
     .target = target,
     .optimize = optimize,
     .build_sdl = false, // Set to true to also build SDL3 itself.
 });
-exe.linkLibrary(sdl_net_dependency.artifact("sdl_net"));
+exe.linkLibrary(sdl_net_dependency.artifact("SDL3_net"));
 ```
 
 This will add the SDL_net library and header to `exe`.
