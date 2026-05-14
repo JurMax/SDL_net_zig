@@ -69,7 +69,7 @@ pub fn build(b: *std.Build) void {
     if (lib.linkage.? == .dynamic) {
         lib.setVersionScript(upstream.path("src/SDL_net.sym"));
         if (target.result.os.tag == .windows) {
-            lib.addWin32ResourceFile(.{ .file = upstream.path("src/version.rc") });
+            lib.root_module.addWin32ResourceFile(.{ .file = upstream.path("src/version.rc") });
         }
     }
 

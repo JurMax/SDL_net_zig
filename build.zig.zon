@@ -3,15 +3,15 @@
     .version = "3.0.0",
     .dependencies = .{
         .sdl_net = .{
-            .url = "git+https://github.com/libsdl-org/SDL_net#5af3b068ea13f888be954801c0b8c17993811850",
-            .hash = "N-V-__8AAMfMegCkkGGVelmUMR9BkYspbpl2X0NSJ2Q-I9HE",
+            .url = "git+https://github.com/libsdl-org/SDL_net#f8a578178560452aaafa18eb875903b1b8ee45cf",
+            .hash = "N-V-__8AAPDmegArUnL9swpUWWUi1pVT2o8VuZr7keBBfcMC",
         },
         .sdl = .{
-            .url = "git+https://github.com/castholm/SDL.git#c5ba24c694b5d520cdc1d029d8def398690d6894",
-            .hash = "sdl-0.4.2+3.4.4-SDL--kB3pQHKG_4zWG-pH04ZcZZj_IRF7dwMpxNVGwd6",
+            .url = "git+https://github.com/castholm/SDL.git#21c6b79840d123e94a9f183f4b0fa1731668f48d",
+            .hash = "sdl-0.5.0+3.4.8-SDL--k4DpgH323IfF6cEaGzKUdtUQv1azbBmmcv0RMAu",
         },
     },
-    .minimum_zig_version = "0.15.2",
+    .minimum_zig_version = "0.16.0",
     .paths = .{
         "LICENSE",
         "README.md",
