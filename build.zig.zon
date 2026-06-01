@@ -3,8 +3,8 @@
     .version = "3.0.0",
     .dependencies = .{
         .sdl_net = .{
-            .url = "git+https://github.com/libsdl-org/SDL_net#f8256ab91f0e91dad892165257b51f4d24df6a34",
-            .hash = "N-V-__8AAC70ewBPoF_T2j_QzR2WwT_hM-FUIeheGJE6Rj9e",
+            .url = "git+https://github.com/libsdl-org/SDL_net#a90d91964988b58bb62d9d88f3854c18bb6f32d4",
+            .hash = "N-V-__8AAC70ewDKCeefaS_fxDfFWZWa9Cxln8XTfhFT7lzB",
         },
         .sdl = .{
             .url = "git+https://github.com/castholm/SDL.git#21c6b79840d123e94a9f183f4b0fa1731668f48d",
