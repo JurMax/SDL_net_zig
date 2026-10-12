@@ -10,7 +10,7 @@ pub fn build(b: *std.Build) void {
         "Prefer building statically or dynamically linked libraries (default: static)",
     ) orelse .static;
 
-    var system_include_path = b.option(
+    const system_include_path = b.option(
         std.Build.LazyPath,
         "system_include_path",
         "System header search path for cross-compiling",
@@ -50,21 +50,14 @@ pub fn build(b: *std.Build) void {
             lib.root_module.linkSystemLibrary("iphlpapi", .{});
             lib.root_module.linkSystemLibrary("ws2_32", .{});
         },
-        .emscripten, .macos => {
-            if (b.sysroot) |sysroot| {
-                system_include_path = system_include_path orelse .{ .cwd_relative = b.pathJoin(&.{ sysroot, "include" }) };
-            }
-        },
+        .emscripten, .macos => {},
         else => {},
     }
 
+    if (system_include_path) |path| lib.root_module.addSystemIncludePath(path);
     lib.root_module.addCSourceFile(.{ .file = upstream.path("src/SDL_net.c") });
     lib.root_module.addIncludePath(upstream.path("include"));
     lib.installHeadersDirectory(upstream.path("include/SDL3_net"), "SDL3_net", .{});
-
-    if (system_include_path) |path| {
-        lib.root_module.addSystemIncludePath(path);
-    }
 
     if (lib.linkage.? == .dynamic) {
         lib.setVersionScript(upstream.path("src/SDL_net.sym"));
